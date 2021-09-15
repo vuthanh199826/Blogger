@@ -1,0 +1,289 @@
+<app-navbar></app-navbar>
+<br><br><br><br><br><br>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+<div class="container">
+  <div class="team-single">
+    <div class="row">
+      <div class="col-lg-4 col-md-5 xs-margin-30px-bottom">
+
+        <div class="bg-light-gray padding-30px-all md-padding-25px-all sm-padding-20px-all text-center" style="border-radius: 10px;background-color: #eff2f5">
+          <div class="team-single-img">
+            <img [hidden]="fb" src="{{avatar}}" width="100%" height="90" alt="" style="border-radius: 150px;border: #7ab1c0 solid; height: 305px">
+            <img [hidden]="!fb" src="{{fb}}" width="100%" height="100" alt="" style="border-radius: 150px;border: #7ab1c0 solid; height: 305px">
+
+              <form [formGroup]="userForm" (ngSubmit)="updateAvatar()">
+                <input type ="hidden"  formControlName="name">
+                <input type ="hidden"  formControlName="username">
+                <input type ="hidden"  formControlName="email">
+                <input type ="hidden"  formControlName="password">
+                <input type ="hidden"  formControlName="roles">
+                <input type ="hidden"  formControlName="phone">
+                <input type ="hidden"  formControlName="address">
+                <input type ="hidden"  formControlName="status">
+                <input type ="hidden"  formControlName="timeCreated">
+                <label for="file"></label>
+                <input [hidden]="fb" type="file" #userPhoto (change)="onFileSelected($event)" name="image" autocomplete="off"  class="form-control-file" id="file">
+                <br>
+                <button type="submit" [hidden]="!fb" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Save</button>
+                <button type="submit" (click)="reset()" [hidden]="!fb" class="btn btn-outline-secondary">Cancel</button>
+              </form>
+
+          </div>
+          <br>
+          <h4 class="margin-10px-bottom font-size24 md-font-size22 sm-font-size20 font-weight-600">{{name}}</h4>
+          <br>
+          <p class="sm-width-95 sm-margin-auto"></p>
+          <div class="margin-20px-top team-single-icons">
+            <ul class="no-margin">
+              <li><a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a></li>
+              <li><a href="javascript:void(0)"><i class="fab fa-twitter"></i></a></li>
+              <li><a href="javascript:void(0)"><i class="fab fa-google-plus-g"></i></a></li>
+              <li><a href="javascript:void(0)"><i class="fab fa-instagram"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8 col-md-7">
+        <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+          <li [ngbNavItem]="1">
+            <a ngbNavLink><img src="https://img.icons8.com/ios/2x/information--v2.gif" height="25"width="25"> <b>Information</b></a>
+            <ng-template #content let-modal xmlns="http://www.w3.org/1999/html">
+              <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title"><img src="https://image.flaticon.com/icons/png/512/2921/2921087.png" height="30" width="30">  Edit for {{userForm.value.title}}</h4>
+                <button type="button" class="btn btn-outline-danger btn-circle btn-lg btn-circle ml-2" aria-label="Close" (click)="modal.dismiss('Cancel')" style="border-radius: 44px">
+                  <b>X</b>
+                </button>
+              </div>
+              <div class="modal-body">
+              <form [formGroup]="userForm" (ngSubmit)="updateInfo()">
+                <div class="mb-3">
+                  <b>Username</b>
+                  <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1"><img src="https://img.icons8.com/ios-filled/2x/username.png" width="20" height="20"></span>
+                    <input type="text" formControlName="username" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" >
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <b>Name</b>
+                  <div class="input-group">
+                    <span class="input-group-text" id="basic-addon2"><img src="https://img.icons8.com/ios-filled/2x/collaborator-male.png" width="20" height="20"></span>
+                    <input type="text" formControlName="name" class="form-control" placeholder="Username" aria-label="Name" aria-describedby="basic-addon2" >
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <b>Email</b>
+                  <div class="input-group">
+                    <span class="input-group-text" ><img src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/2x/external-email-business-kiranshastry-solid-kiranshastry.png" width="20" height="20"></span>
+                    <input type="text" formControlName="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon3" >
+                  </div>
+                </div>
+                <div class="mb-3" hidden>
+                  <label>Password</label>
+                  <div class="input-group">
+                    <span class="input-group-text" id="basic-addon4"><img src="https://img.icons8.com/fluency/2x/username.png" width="20" height="20"></span>
+                    <input type="password" formControlName="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon4" readonly>
+                  </div>
+                </div>
+                <div class="mb-3" hidden>
+                  <label>Avartar</label>
+                  <div class="input-group">
+                    <span class="input-group-text" id="basic-addon5"><img src="https://img.icons8.com/fluency/2x/username.png" width="20" height="20"></span>
+                    <input type="text" formControlName="avatar" class="form-control" placeholder="Avatar" aria-label="Avatar" aria-describedby="basic-addon5" readonly>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <b>Phone</b>
+                  <div class="input-group">
+                    <span class="input-group-text" id="basic-addon6"><img src="https://img.icons8.com/ios-filled/2x/apple-phone.png" width="20" height="20"></span>
+                    <input type="text" formControlName="phone" class="form-control" placeholder="Phone" aria-label="Phone" aria-describedby="basic-addon6" >
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <b>Address</b>
+                  <div class="input-group">
+                    <span class="input-group-text" id="basic-addon7"><img src="https://img.icons8.com/ios-filled/2x/address.png" width="20" height="20"></span>
+                      <select class="form-control" formControlName="address">
+                          <option *ngFor="let address of addresses" value="{{address.name}}">{{address.name}}</option>
+                      </select>
+                  </div>
+                </div>
+                <div class="mb-3" hidden>
+                  <b>Time Created</b>
+                  <div class="input-group">
+                    <span class="input-group-text" id="basic-addon8"><img src="https://img.icons8.com/ios-filled/2x/time.png" width="20" height="20"></span>
+                    <input type="text" formControlName="timeCreated" class="form-control" placeholder="TimeCreate" aria-label="TimeCreate" aria-describedby="basic-addon1" readonly>
+                  </div>
+                </div>
+                <div class="mb-3" hidden>
+                  <b>Role</b>
+                  <select formControlName="roles" class="form-select" aria-label="Default select example">
+                    <option value="1">ADMIN</option>
+                    <option value="2">PM</option>
+                    <option value="3">USER</option>
+                  </select>
+                </div>
+                <div class="mb-3" hidden>
+                  <b>Status</b>
+                  <select formControlName="status" class="form-select" aria-label="Default select example">
+                    <option value="1">Active</option>
+                    <option value="2">Lock</option>
+                  </select>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#exampleModal2" (click)="modal.close('Save click')" style="width: 100px">Save</button>
+                </div>
+              </form>
+              </div>
+            </ng-template>
+            <ng-template ngbNavContent>
+             <br>
+              <div class="team-single-text padding-50px-left sm-no-padding-left">
+                <div class="row">
+                  <div class="col-md-6">
+                    <h4 class="font-size38 sm-font-size32 xs-font-size30">Information</h4>
+                  </div>
+                  <div class="col-md-6">
+                    <button type="button" class="btn btn-outline-light btn-circle btn-lg btn-circle ml-2" (click)="open(content)" ngbTooltip="Edit" style="border-radius: 44px; float: right">
+                      <img src="https://cdn-icons-png.flaticon.com/128/644/644276.png" width="30" height="30">
+                    </button>
+                  </div>
+                </div>
+                <hr>
+                <form [formGroup]="userForm">
+                  <div class="mb-3">
+                    <b>Username</b>
+                    <div class="input-group">
+                      <span class="input-group-text" ><img src="https://img.icons8.com/ios-filled/2x/username.png" width="20" height="20"></span>
+                      <input type="text" formControlName="username" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" readonly>
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <b>Name</b>
+                    <div class="input-group">
+                      <span class="input-group-text" ><img src="https://img.icons8.com/ios-filled/2x/collaborator-male.png" width="20" height="20"></span>
+                      <input type="text" formControlName="name" class="form-control" placeholder="Username" aria-label="Name" aria-describedby="basic-addon2" readonly>
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <b>Email</b>
+                    <div class="input-group">
+                      <span class="input-group-text" id="basic-addon3"><img src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/2x/external-email-business-kiranshastry-solid-kiranshastry.png" width="20" height="20"></span>
+                      <input type="text" formControlName="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon3" readonly >
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <b>Phone</b>
+                    <div class="input-group">
+                      <span class="input-group-text" ><img src="https://img.icons8.com/ios-filled/2x/apple-phone.png" width="20" height="20"></span>
+                      <input type="text" formControlName="phone" class="form-control" placeholder="Phone" aria-label="Phone" aria-describedby="basic-addon6" readonly>
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <b>Address</b>
+                    <div class="input-group">
+                      <span class="input-group-text" ><img src="https://img.icons8.com/ios-filled/2x/address.png" width="20" height="20"></span>
+                      <input type="text" formControlName="address" class="form-control" placeholder="Address" aria-label="Address" aria-describedby="basic-addon7" readonly>
+                    </div>
+                  </div>
+                  <div class="mb-3" hidden>
+                    <label>Password</label>
+                    <div class="input-group">
+                      <span class="input-group-text" ><img src="https://img.icons8.com/fluency/2x/username.png" width="20" height="20"></span>
+                      <input type="password" formControlName="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon4" readonly>
+                    </div>
+                  </div>
+                  <div class="mb-3" hidden>
+                    <label>Avartar</label>
+                    <div class="input-group">
+                      <span class="input-group-text"><img src="https://img.icons8.com/fluency/2x/username.png" width="20" height="20"></span>
+                      <input type="text" formControlName="avatar" class="form-control" placeholder="Avatar" aria-label="Avatar" aria-describedby="basic-addon5" readonly>
+                    </div>
+                  </div>
+                  <div class="mb-3" hidden>
+                    <b>Time Created</b>
+                    <div class="input-group">
+                      <span class="input-group-text" ><img src="https://img.icons8.com/ios-filled/2x/time.png" width="20" height="20"></span>
+                      <input type="text" formControlName="timeCreated" class="form-control" placeholder="TimeCreate" aria-label="TimeCreate" aria-describedby="basic-addon1" readonly>
+                    </div>
+                  </div>
+                  <div class="mb-3" hidden>
+                    <b>Role</b>
+                    <select formControlName="roles" class="form-select" aria-label="Default select example"  onfocus="this.defaultIndex=this.selectedIndex;" onchange="this.selectedIndex=this.defaultIndex;">
+                      <option value="1">ADMIN</option>
+                      <option value="2">PM</option>
+                      <option value="3">USER</option>
+                    </select>
+                  </div>
+                  <div class="mb-3" hidden>
+                    <b>Status</b>
+                    <select formControlName="status" class="form-select" aria-label="Default select example" onfocus="this.defaultIndex=this.selectedIndex;" onchange="this.selectedIndex=this.defaultIndex;" >
+                      <option value="1">Active</option>
+                      <option value="2">Lock</option>
+                    </select>
+                  </div>
+                </form>
+              </div>
+              <div class="progress mb-3" style="height: 20px" id="updateInfo">
+              </div>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="2">
+            <a ngbNavLink><img src="https://img.icons8.com/ios/2x/single-choice--v2.gif" height="25" width="25"> <b> My Post</b></a>
+            <ng-template ngbNavContent>
+<!--             my post-->
+
+              <app-mypost></app-mypost>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="3">
+            <a ngbNavLink><img src="https://img.icons8.com/ios-glyphs/2x/password--v2.gif" height="25" width="25"> <b> Change Password</b></a>
+            <ng-template ngbNavContent>
+              <app-change-password></app-change-password>
+            </ng-template>
+          </li>
+        </ul>
+        <div [ngbNavOutlet]="nav" class="mt-2"></div>
+      </div>
+      <div class="col-md-12">
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<br>
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Notification</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h4 class="text-center" [innerHTML]="message" ></h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="reset()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">Notification</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h4 class="text-center" [innerHTML]="message" ></h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="reset()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

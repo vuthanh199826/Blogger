@@ -1,0 +1,16 @@
+<h1 class="bundle-title"><i class="fa fa-fire" ></i> Hot Post</h1>
+<div class="col-12">
+  <div class="post-block post-classic">
+    <div class="post-img"><img src="{{top1Comment[0].image}}" alt="post image"></div>
+    <div class="post-detail"><a class="post-title regular" href="blog_detail.html">{{top1Comment[0].title}}</a>
+      <div class="post-credit">
+        <div class="author"><a class="author-avatar" href="#"><img src="{{top1Comment[0].user.avatar}}" width="45" height="45" alt="auhtor"></a>
+          <h5 class="author-name">{{top1Comment[0].user.name}}</h5>
+        </div>
+        <h5 class="upload-day">{{top1Comment[0].date | date}}</h5>
+        <div class="post-tag"><a href="index.html">{{top1Comment[0].hashtag.name}}</a></div>
+      </div>
+      <p class="post-describe">{{top1Comment[0].description}} </p>
+    </div>
+  </div>
+</div>

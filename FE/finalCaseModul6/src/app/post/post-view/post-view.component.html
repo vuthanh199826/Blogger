@@ -1,0 +1,336 @@
+
+<div align="center" *ngIf="postInstand.user.id === idUser"><button class="btn btn-outline-primary" routerLink="/post/edit/{{postInstand.id}}">abc</button></div>
+<div id="main">
+  <section class="blog-detail">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-10">
+          <div class="post-block" *ngIf="postInstand.status == 'public'">
+            <h1 class="blog-detail-title">{{postInstand.title}}</h1>
+            <div class="blog-credit">
+              <div class="blog-credit_wrapper">
+                <h5>#{{postInstand.hashtag.name}}</h5>
+                <p>{{postInstand.date | date : ' EEEE,  dd-MM-yyyy,  hh:mm OOOO'}}</p>
+              </div>
+            </div>
+            <img style="width: 990px; height: 550px; border-radius: 5px" class="blog-cover img-fluid"
+                 src="{{postInstand.image}}" alt="blog image">
+            <h4>{{postInstand.description}}</h4>
+            <br>
+            <p class="blog-pragraph" [innerHTML]="postInstand.content"></p>
+            <div class="blog-quote">
+              <q> end !!!</q>
+              <a href="#id-author-info" style="text-decoration: none" class="quote-author">{{postInstand.user.name}}</a>
+            </div>
+            <div class="row">
+              <h4><i class="fa fa-list"> </i> Related Articles</h4>
+              <br>
+              <br>
+              <div class="col-12">
+                <img style="padding: 8px;border-radius: 10px;height: 210px;width: 310px"
+                     src="https://images.pexels.com/photos/3826683/pexels-photo-3826683.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500">
+                <img style="padding: 8px;border-radius: 10px;height: 210px;width: 310px"
+                     src="https://images.pexels.com/photos/2811648/pexels-photo-2811648.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500">
+                <img style="padding: 8px;border-radius: 10px;height: 210px;width: 310px"
+                     src="https://images.pexels.com/photos/577210/pexels-photo-577210.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500">
+              </div>
+            </div>
+          </div>
+          <div *ngIf="postInstand.status == 'lock'">
+            <div class="error-wrapper">
+              <div class="error-container error-500">
+                <div class="error">
+                  <div class="error-title">
+                    This post has been locked !!!
+                  </div>
+                  <div class="error-number">
+                    <i style="color: #1b1e21" class="fa fa-lock" aria-hidden="true"></i>
+                  </div>
+                  <div class="error-description">
+                    Contact Admin
+                  </div>
+                  <ul class="error-actions">
+                    <li>
+                      <a href="">
+                        <i class="pe-7s-left-arrow" data-toggle="tooltip" title="" data-original-title="BACK"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="">
+                        <i class="pe-7s-home" data-toggle="tooltip" title="" data-original-title="HOME"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="">
+                        <i class="pe-7s-mail" data-toggle="tooltip" title="" data-original-title="CONTACT US"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <hr>
+          </div>
+          <br>
+          <br>
+          <br>
+          <div class="post-footer">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="post-tags"><a href="index.html"><i class="fa fa-tag">{{postInstand.hashtag.name}}</i></a>
+                </div>
+              </div>
+              <div class="col-sm-6 text-sm-right">
+                <div class="post-share">
+                  <a style="cursor: pointer"><p style="color: blue;font-weight: bold" data-bs-toggle="modal" data-bs-target="#exampleModal1">Share : </p></a>
+                  <div class="socials">
+                    <a><i></i></a>
+                    <a><i  id="like-icon" class="fas fa-thumbs-up" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="createLike()"> {{postInstand.count}} </i></a>
+                    <a><i class="fab fa-facebook-f"></i></a>
+                    <a><i class="fab fa-instagram"></i></a>
+                    <a><i class="fab fa-twitter"></i></a>
+                    <a><i class="fab fa-dribbble"></i></a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--          <div class="another-posts"><a class="arrow-control arrow-prev" href="blog_detail.html"><i class="arrow_left"></i></a><a class="arrow-control arrow-next" href="blog_detail.html"><i class="arrow_right"></i></a>-->
+          <!--            <div class="row no-gutters">-->
+          <!--              <div class="col-12 col-md-6"><a href=""></a>-->
+          <!--                <div class="another-post_block prev-post">-->
+          <!--                  <div class="post-mini-img text-left"><a href="blog_detail.html"><img src="assets/images/blog_detail/post-mini-img-1.png" alt="post image"></a></div>-->
+          <!--                  <div class="post-title">-->
+          <!--                    <p>Previous post</p><a href="blog_detail.html">The Personality Trait That Makes People Happier</a>-->
+          <!--                  </div>-->
+          <!--                </div>-->
+          <!--              </div>-->
+          <!--              <div class="col-12 col-md-6">-->
+          <!--                <div class="another-post_block text-right next-post">-->
+          <!--                  <div class="post-title">-->
+          <!--                    <p>Next post</p><a href="blog_detail.html">The Personality Trait That Makes People Happier</a>-->
+          <!--                  </div>-->
+          <!--                  <div class="post-mini-img text-right"><a href="blog_detail.html"><img src="assets/images/blog_detail/post-mini-img-2.png" alt="post image"></a></div>-->
+          <!--                </div>-->
+          <!--              </div>-->
+          <!--            </div>-->
+          <!--          </div>-->
+          <div class="post-author-detail">
+            <div class="row no-gutters align-items-center">
+              <div class="col-sm-5 col-md-3" >
+
+                <!--                author description-->
+
+                <div class="author-avatar" style="border-radius: 20px"><img src="{{postInstand.user.avatar}}"></div>
+              </div>
+              <div class="col-sm-7 col-md-9">
+                <div class="author-info">
+                  <h5 id="id-author-info" routerLink="/post/list/{{postInstand.user.id}}"><i class="fa fa-user"></i> {{postInstand.user.name}}</h5>
+                  <p>This is something about author </p>
+                  <div class="author-social"><a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a><a
+                    href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a><a
+                    href="https://twitter.com/"><i class="fab fa-twitter"></i></a><a href="https://dribbble.com/"><i
+                    class="fab fa-dribbble"></i></a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div [hidden]="idUser">
+            <b>You need to login or register before commenting <img src="https://cdn-icons-png.flaticon.com/128/556/556232.png" height="30" width="30"></b> <app-login></app-login>
+          </div>
+          <div [hidden]="!idUser" class="post-comment">
+            <h2>Leave a comment</h2>
+
+            <form [formGroup]="commentpost" (ngSubmit)="createComment()">
+              <div class="form-row">
+              </div>
+              <div class="form-group">
+                <textarea formControlName="messages" class="textarea-form trans-bg" id="messages" name="messages"
+                          cols="30" rows="6" placeholder="Message"></textarea>
+              </div>
+              <button type="submit" style="border-radius: 10px" class="normal-btn" data-bs-toggle="modal" data-bs-target="#exampleModal2"><i class="fa fa-paper-plane"></i>  Send message</button>
+            </form>
+          </div>
+          <hr>
+          <div class="card-body">
+            <div class="list-comment">
+              <div class="card mb-2" style="border: none" *ngFor="let comment of listComment | paginate :{
+                itemsPerPage: tableSize,
+                currentPage: page,
+                totalItems: count
+  }">
+                <div class="card-body p-2 p-sm-3" style="background-color: #dceaea;border: none; border-radius: 30px">
+                  <div class="media forum-item">
+                    <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="{{comment.user.avatar}}"
+                                                                                         class="mr-3 rounded-circle"
+                                                                                         width="100"
+                                                                                         height="100"
+                                                                                         style="border: #707477 solid"/></a>
+                    <div class="media-body">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <h5 style="color: #445464; "><a style="text-decoration: none; color: #343d4f"
+                                                          data-toggle="collapse"
+                                                          data-target=".forum-content" class="content"><small><small
+                            class="fa fa-play"></small></small> @{{comment.user.username}} :</a></h5>
+                        </div>
+                        <div *ngIf="comment.user.id == idUser" class="col-md-6">
+                          <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal"
+                                  data-bs-target="#staticBackdrop"
+                                  style="float: right;height: 25px; width: 25px; border-radius: 44px"><i
+                            class="fa fa-times"></i></button>
+                        </div>
+                      </div>
+                      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                           tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="staticBackdropLabel">Edit Comment</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                      aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <h4 class="text-center">Do you want to delete this comment?</h4>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              <button type="submit" class="btn btn-primary" (click)="deleteComment(comment.id)"
+                                      data-bs-dismiss="modal">Save
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <br>
+                      <h6 class="content text-secondary">
+                        <p class="fa fa-speakap"></p> {{comment.text}}
+                      </h6>
+                      <br>
+                      <br>
+                      <p class="text-muted">
+                        &nbsp;&nbsp;&nbsp; <span class="text-secondary font-weight-bold"><a><i
+                        class="fa fa-clock"> {{comment.createdDate}}</i></a></span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center">
+      <pagination-controls previousLabel="" nextLabel="" (pageChange)="tabSize($event)">
+      </pagination-controls>
+    </div>
+  </section><!--End posts-->
+  <!--  <section class="instagram">-->
+  <!--    <div class="container">-->
+  <!--      <div class="instagram-posts"><a class="instagram-img_block" href="https://www.instagram.com/"><img src="assets/images/instagram/1.png" alt="instagram post">-->
+  <!--        <div class="instagram-post_block"><i class="fab fa-instagram"></i>-->
+  <!--          <p>Pisen_Instagram</p>-->
+  <!--        </div></a><a class="instagram-img_block" href="https://www.instagram.com/"><img src="assets/images/instagram/2.png" alt="instagram post">-->
+  <!--        <div class="instagram-post_block"><i class="fab fa-instagram"></i>-->
+  <!--          <p>Pisen_Instagram</p>-->
+  <!--        </div></a><a class="instagram-img_block" href="https://www.instagram.com/"><img src="assets/images/instagram/3.png" alt="instagram post">-->
+  <!--        <div class="instagram-post_block"><i class="fab fa-instagram"></i>-->
+  <!--          <p>Pisen_Instagram</p>-->
+  <!--        </div></a><a class="instagram-img_block" href="https://www.instagram.com/"><img src="assets/images/instagram/4.png" alt="instagram post">-->
+  <!--        <div class="instagram-post_block"><i class="fab fa-instagram"></i>-->
+  <!--          <p>Pisen_Instagram</p>-->
+  <!--        </div></a><a class="instagram-img_block" href="https://www.instagram.com/"><img src="assets/images/instagram/5.png" alt="instagram post">-->
+  <!--        <div class="instagram-post_block"><i class="fab fa-instagram"></i>-->
+  <!--          <p>Pisen_Instagram</p>-->
+  <!--        </div></a><a class="instagram-img_block" href="https://www.instagram.com/"><img src="assets/images/instagram/3.png" alt="instagram post">-->
+  <!--        <div class="instagram-post_block"><i class="fab fa-instagram"></i>-->
+  <!--          <p>Pisen_Instagram</p>-->
+  <!--        </div></a><a class="instagram-img_block" href="https://www.instagram.com/"><img src="assets/images/instagram/2.png" alt="instagram post">-->
+  <!--        <div class="instagram-post_block"><i class="fab fa-instagram"></i>-->
+  <!--          <p>Pisen_Instagram</p>-->
+  <!--        </div></a></div>-->
+  <!--    </div>-->
+  <!--  </section>&lt;!&ndash;End instagram&ndash;&gt;-->
+
+</div>
+
+<! --Modal -->
+<div *ngIf="check()" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        You are not logged in !
+      </div>
+      <div class="modal-footer">
+        <app-login></app-login>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel1">Input receiver email here </h5>
+      </div>
+      <form [formGroup]="email">
+        <div class="modal-body">
+          <div class="row">
+            <div align="center" class="col-12">
+              <img src="{{img}}" alt="">
+            </div>
+          </div>
+          <div class="row">
+            <div align="center" class="col-12">
+              <p>{{message}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-3">
+              <img width="100%" src="https://img.icons8.com/external-justicon-flat-justicon/2x/external-email-notifications-justicon-flat-justicon-1.png" alt="">
+            </div>
+            <div class="col-9 mt-4">
+              <input  formControlName="detail" id="receiver-email" type="email" class="form-control">
+            </div>
+          </div>
+
+
+
+        </div>
+        <div class="modal-footer">
+          <button (click)="resetModal()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button (click)="sendEmail()" type="button" class="btn btn-primary">Send</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- Button trigger modal -->
+
+<!-- Button trigger modal -->
+<!-- Modal -->
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">Notification</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h4 class="text-center" [innerHTML]="status"></h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

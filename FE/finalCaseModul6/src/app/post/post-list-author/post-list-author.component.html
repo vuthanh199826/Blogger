@@ -1,0 +1,53 @@
+<p>post-list-author works!</p>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!--<label for="search">Search for a title:</label>-->
+<div class="row">
+  <div class="col-4">
+    <select style="width: 30%; float: right" class="form-control" id="hashtag">
+      <option value="">All hashtag</option>
+      <option *ngFor="let item of hashtags" value="{{item.id}}">{{item.name}}</option>
+    </select>
+  </div>
+  <div class="col-4">
+    <input placeholder="Search" (change)="searchByTitle()" id="search" type="search" class="form-control"  [ngbTypeahead]="search" [resultFormatter]="formatter" />
+  </div>
+  <div class="col-4">
+    <button (click)="getAll()" class="btn btn-outline-primary">All Post</button>
+  </div>
+</div>
+<hr>
+
+<div class="container">
+<div class="row">
+  <div *ngIf="posts.length === 0"><img width="10%" src="https://img.icons8.com/ios/2x/list-is-empty.gif" alt="">empty</div>
+    <div *ngFor="let item of posts | paginate :{
+        itemsPerPage: tableSize,
+                currentPage: page,
+                totalItems: count } " class="col-sm-12 col-md-6 col-lg-6 p-3">
+  <div class="post-mini_block">
+    <div class="row">
+      <div class="col-4 col-md-2 col-lg-4">
+        <img width="100%" src="{{item.image}}" alt="post image">
+      </div>
+   <div class="col-8"> <div class="post-detail">
+     <div class="post-credit">
+       <div class="post-tag"></div>
+     </div><h5 style="text-decoration: none" class="titlex" routerLink="/post/view/{{item.id}}">{{item.title}}</h5>
+     <p class="description">{{item.description}}</p>
+     <p class="date">{{item.date | date: 'EEEE, dd-MM-yyyy'}}</p>
+
+   </div></div>
+    </div>
+  </div>
+</div>
+</div>
+  <div class="d-flex justify" style="margin-left: 35%" >
+    <pagination-controls previousLabel="" nextLabel="" (pageChange)="tabSize($event)">
+    </pagination-controls>
+  </div>
+</div>
+

@@ -1,0 +1,24 @@
+<h1 class="bundle-title">Recent view</h1>
+<div class="col-12 col-md-6 col-lg-12" *ngFor="let like of likes | paginate:{
+itemsPerPage: tableSize,
+                currentPage: page,
+                totalItems: count
+}">
+  <div class="post-mini_block" ><img src="{{like.post.image}}" alt="post image">
+    <div class="post-detail">
+      <div class="post-credit">
+        <div class="post-tag"><a >{{like.post.hashtag.name}}</a></div>
+      </div><a class="post-title" routerLink="/post/view/{{like.post.id}}">{{like.post.title}}</a>
+      <p class="post-describe content ">{{like.post.description}} </p>
+      <div class="post-credit">
+        <div class="author">
+          <h5 class="author-name">{{like.user.name}}  <span id="icon" class=" text-muted align-self-center float-right"><i class="far fa-thumbs-up" >{{like.post.count}}</i> <i class="far fa-comment ml-2">  {{like.post.comment_count}}</i>  </span></h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="d-flex justify" style="margin-left: 35%" >
+  <pagination-controls previousLabel="Back" nextLabel="Next" (pageChange)="tabSize($event)">
+  </pagination-controls>
+</div>

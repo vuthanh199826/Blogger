@@ -1,0 +1,20 @@
+<div class="angency-sidebar_block recent-post-sidebar-block"><h2 class="sidebar-block-title">Recent Post</h2>
+  <div class="row">
+    <div class="col-12 col-md-6 col-lg-12" *ngFor=" let post of posts">
+      <div class="post-mini_block"><img src="{{post.image}}" alt="post image">
+        <div class="post-detail">
+          <div class="post-credit">
+            <div class="post-tag"><a routerLink="/post/hashtag/{{post.hashtag.id}}">{{post.hashtag.name}}}</a></div>
+          </div>
+          <a class="post-title" routerLink="/post/view/{{post.id}}">{{post.title}}</a>
+          <div class="post-credit">
+            <div class="author"><h5 class="author-name">{{post.user.name}}  <span id="icon"
+                                                                                  class=" text-muted align-self-center float-right"><i
+              class="far fa-thumbs-up">{{post.count}}</i> <i class="far fa-comment ml-2">  {{post.comment_count}}</i>  </span>
+            </h5></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

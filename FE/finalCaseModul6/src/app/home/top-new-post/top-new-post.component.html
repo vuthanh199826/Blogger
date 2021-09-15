@@ -1,0 +1,20 @@
+<div class="blog-news_bundle hot-news-bundle">
+  <div class="row">
+    <app-hot-new></app-hot-new>
+    <div class="col-12 col-md-6" *ngFor="let post of posts" routerLink="/view/{{post.id}}">
+      <div class="post-mini_block"><img src="{{post.image}}"  alt="post image" style="width: 150px;height: 150px; border: #b3bfc5 solid; border-radius: 5px">
+        <div class="post-detail">
+          <div class="post-credit">
+            <i class="fa fa-clock"></i><div class="post-tag"><a href="index.html"> {{post.hashtag.name}}</a></div>
+          </div><a class="post-title title-small" >{{post.title}}</a>
+          <div class="post-credit">
+            <div class="author">
+              <h5 class="author-name">{{post.user.name}}</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

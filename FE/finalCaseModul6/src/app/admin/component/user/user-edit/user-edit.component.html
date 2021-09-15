@@ -1,0 +1,175 @@
+<br>
+<ng-template  #content let-modal xmlns="http://www.w3.org/1999/html">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title"><img src="https://image.flaticon.com/icons/png/512/2921/2921087.png" height="30" width="30">  Edit for {{userForm.value.title}}</h4>
+    <button type="button" class="btn btn-outline-danger btn-circle btn-lg btn-circle ml-2" aria-label="Close" (click)="modal.dismiss('Cancel')" style="border-radius: 44px">
+      <b>X</b>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="userForm" (ngSubmit)="update(id)">
+      <div class="mb-3">
+        <b>Username</b>
+        <div class="input-group">
+          <span class="input-group-text" id="basic-addon1"><img src="https://img.icons8.com/ios-filled/2x/username.png" width="20" height="20"></span>
+          <input type="text" formControlName="username" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" readonly>
+        </div>
+      </div>
+      <div class="mb-3">
+        <b>Name</b>
+        <div class="input-group">
+          <span class="input-group-text" id="basic-addon2"><img src="https://img.icons8.com/ios-filled/2x/collaborator-male.png" width="20" height="20"></span>
+          <input type="text" formControlName="name" class="form-control" placeholder="Username" aria-label="Name" aria-describedby="basic-addon2" readonly>
+        </div>
+      </div>
+      <div class="mb-3">
+        <b>Email</b>
+        <div class="input-group">
+          <span class="input-group-text" ><img src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/2x/external-email-business-kiranshastry-solid-kiranshastry.png" width="20" height="20"></span>
+          <input type="text" formControlName="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon3" readonly>
+        </div>
+      </div>
+      <div class="mb-3" hidden>
+        <label>Password</label>
+        <div class="input-group">
+          <span class="input-group-text" id="basic-addon4"><img src="https://img.icons8.com/fluency/2x/username.png" width="20" height="20"></span>
+          <input type="password" formControlName="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon4" readonly>
+        </div>
+      </div>
+      <div class="mb-3" hidden>
+        <label>Avartar</label>
+        <div class="input-group">
+          <span class="input-group-text" id="basic-addon5"><img src="https://img.icons8.com/fluency/2x/username.png" width="20" height="20"></span>
+          <input type="text" formControlName="avatar" class="form-control" placeholder="Avatar" aria-label="Avatar" aria-describedby="basic-addon5" readonly>
+        </div>
+      </div>
+      <div class="mb-3">
+        <b>Phone</b>
+        <div class="input-group">
+          <span class="input-group-text" id="basic-addon6"><img src="https://img.icons8.com/ios-filled/2x/apple-phone.png" width="20" height="20"></span>
+          <input type="text" formControlName="phone" class="form-control" placeholder="Phone" aria-label="Phone" aria-describedby="basic-addon6" readonly>
+        </div>
+      </div>
+      <div class="mb-3">
+        <b>Address</b>
+        <div class="input-group">
+          <span class="input-group-text" id="basic-addon7"><img src="https://img.icons8.com/ios-filled/2x/address.png" width="20" height="20"></span>
+          <input type="text" formControlName="address" class="form-control" placeholder="Address" aria-label="Address" aria-describedby="basic-addon7" readonly>
+        </div>
+      </div>
+      <div class="mb-3">
+        <b>Time Created</b>
+        <div class="input-group">
+          <span class="input-group-text" id="basic-addon8"><img src="https://img.icons8.com/ios-filled/2x/time.png" width="20" height="20"></span>
+          <input type="text" formControlName="timeCreated" class="form-control" placeholder="TimeCreate" aria-label="TimeCreate" aria-describedby="basic-addon1" readonly>
+        </div>
+      </div>
+      <div class="row" >
+        <div class="col-md-6" *ngIf="idAdmin == '1'">
+          <div class="mb-3">
+            <b>Role</b>
+            <select formControlName="roles" class="form-select" aria-label="Default select example">
+              <option value="1">ADMIN</option>
+              <option value="3">USER</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="mb-3">
+            <b>Status</b>
+            <select formControlName="status" class="form-select" aria-label="Default select example">
+              <option value="1">Active</option>
+              <option value="2">Lock</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline-info" (click)="modal.close('Save click')" style="width: 100px" data-bs-toggle="modal" data-bs-target="#exampleModal">Save</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+<button type="button" class="btn btn-outline-light btn-circle btn-lg btn-circle ml-2" (click)="open(content)" ngbTooltip="Edit" style="border-radius: 44px">
+  <img src="https://cdn-icons-png.flaticon.com/128/644/644276.png" width="30" height="30">
+</button>
+<img src="{{userForm.value.avatar}}" width="70" height="70" style="border-radius: 44px; margin-left: 95px; border: #ffffff solid">
+<hr>
+<form [formGroup]="userForm" >
+  <div class="mb-3">
+    <b>Username</b>
+    <div class="input-group">
+      <span class="input-group-text" ><img src="https://img.icons8.com/ios-filled/2x/username.png" width="20" height="20"></span>
+      <input type="text" formControlName="username" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" readonly>
+    </div>
+  </div>
+  <div class="mb-3">
+    <b>Name</b>
+    <div class="input-group">
+      <span class="input-group-text" ><img src="https://img.icons8.com/ios-filled/2x/collaborator-male.png" width="20" height="20"></span>
+      <input type="text" for  mControlName="name" class="form-control" placeholder="Username" aria-label="Name" aria-describedby="basic-addon2" readonly>
+    </div>
+  </div>
+  <div class="mb-3">
+    <b>Email</b>
+    <div class="input-group">
+      <span class="input-group-text" id="basic-addon3"><img src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/2x/external-email-business-kiranshastry-solid-kiranshastry.png" width="20" height="20"></span>
+      <input type="text" formControlName="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon3" readonly>
+    </div>
+  </div>
+  <div class="mb-3" hidden>
+    <label>Password</label>
+    <div class="input-group">
+      <span class="input-group-text" ><img src="https://img.icons8.com/fluency/2x/username.png" width="20" height="20"></span>
+      <input type="password" formControlName="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon4" readonly>
+    </div>
+  </div>
+  <div class="mb-3" hidden>
+    <label>Avartar</label>
+    <div class="input-group">
+      <span class="input-group-text"><img src="https://img.icons8.com/fluency/2x/username.png" width="20" height="20"></span>
+      <input type="text" formControlName="avatar" class="form-control" placeholder="Avatar" aria-label="Avatar" aria-describedby="basic-addon5" readonly>
+    </div>
+  </div>
+  <div class="mb-3">
+    <b>Phone</b>
+    <div class="input-group">
+      <span class="input-group-text" ><img src="https://img.icons8.com/ios-filled/2x/apple-phone.png" width="20" height="20"></span>
+      <input type="text" formControlName="phone" class="form-control" placeholder="Phone" aria-label="Phone" aria-describedby="basic-addon6" readonly>
+    </div>
+  </div>
+  <div class="mb-3">
+    <b>Address</b>
+    <div class="input-group">
+      <span class="input-group-text" ><img src="https://img.icons8.com/ios-filled/2x/address.png" width="20" height="20"></span>
+      <input type="text" formControlName="address" class="form-control" placeholder="Address" aria-label="Address" aria-describedby="basic-addon7" readonly>
+    </div>
+  </div>
+  <div class="mb-3">
+    <b>Time Created</b>
+    <div class="input-group">
+      <span class="input-group-text" ><img src="https://img.icons8.com/ios-filled/2x/time.png" width="20" height="20"></span>
+      <input type="text" formControlName="timeCreated" class="form-control" placeholder="TimeCreate" aria-label="TimeCreate" aria-describedby="basic-addon1" readonly>
+    </div>
+  </div>
+</form>
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Notification</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        Update Success <img src="https://cdn-icons-png.flaticon.com/128/845/845646.png" width="40" height="40">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="reload()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

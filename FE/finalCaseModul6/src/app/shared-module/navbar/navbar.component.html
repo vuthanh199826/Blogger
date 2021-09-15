@@ -1,0 +1,98 @@
+<header>
+  <div class="header-wrapper">
+    <div class="container">
+      <div class="header-menu">
+        <div class="row no-gutters align-items-center justify-content-center">
+          <div class="col-4 col-md-2"><a class="logo" href="/home">
+            <img src="https://img.icons8.com/color/2x/twitter--v2.gif" width="25" height="25" alt="logo">
+            <img src="https://cdn-icons-png.flaticon.com/128/4019/4019932.png" width="40" height="35" alt="logo">
+            <img src="https://img.icons8.com/color/2x/a-cute.png" width="40" height="40" alt="logo">
+            <img src="https://img.icons8.com/color/2x/t-cute.png" width="40" height="40" alt="logo">
+            <img src="https://img.icons8.com/color/2x/c-cute.png" width="40" height="40" alt="logo">
+          </a></div>
+          <div class="col-0 col-xl-5">
+            <ul>
+              <li class="nav-item"><a style="text-decoration: none" class="pisen-nav-link active" routerLink="/post/list">List Post</a><i class="submenu-opener fas fa-plus"></i>
+              </li>
+              <li class="nav-item"><a class="pisen-nav-link active" data-bs-toggle="modal" data-bs-target="#exampleModal5" (click)="checkLogin()" ><i class="fa fa-pen"></i> New Post</a><i class="submenu-opener fas fa-plus"></i>
+              </li>
+            </ul>
+          </div>
+          <div class="col-3 col-md-5">
+
+            <nav class="navigation float-md-right" >
+              <ul>
+                <li class="nav-item" ><a class="pisen-nav-link">{{name}}</a></li>
+                <li class="nav-item" [hidden]="!avatar"><a class="pisen-nav-link"><img src="{{avatar}}" width="40" height="40" style="border-radius: 44px;border: #005cbf solid"></a></li>
+<!--                <li class="nav-item dropdown" style="float: right" [hidden]="!token">-->
+<!--&lt;!&ndash;                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdowns" role="button"&ndash;&gt;-->
+<!--&lt;!&ndash;                     data-bs-toggle="dropdown" aria-expanded="false">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <img src="https://img.icons8.com/ios/2x/settings&#45;&#45;v2.gif" width="30" height="30" class="rounded-circle mt-2" alt="" style="margin:15px;">&ndash;&gt;-->
+<!--&lt;!&ndash;                  </a>&ndash;&gt;-->
+<!--&lt;!&ndash;                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <li><a class="dropdown-item" (click)="logout()">Logout</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <li>&ndash;&gt;-->
+<!--&lt;!&ndash;                      <hr class="dropdown-divider">&ndash;&gt;-->
+<!--&lt;!&ndash;                    </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <li><a class="dropdown-item" routerLink="/user/{{id}}" >Infomation</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                  </ul>&ndash;&gt;-->
+<!--                </li>-->
+                <li class="nav-item" [hidden]="!token" >
+                  <img src="https://img.icons8.com/ios/2x/settings&#45;&#45;v2.gif" width="35" height="35" class="rounded-circle mt-2" alt="" style="margin:10px;">
+                  <ul class="sub-menu">
+                    <li class="sub-menu_item"><a class="sub-menu-link"  routerLink="/user/{{id}}">Information</a></li>
+                    <li *ngIf="roles =='ADMIN'" class="sub-menu_item"><a class="sub-menu-link"  routerLink="/admin">{{roles}}</a></li>
+                    <li class="sub-menu_item"><a class="sub-menu-link" (click)="logout()">Logout</a></li>
+                  </ul>
+                </li>
+                <div id="login" style="float: right; margin-top: 14px" [hidden]="token">
+                  <app-login></app-login>
+                </div>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- Modal -->
+<div *ngIf="check()"  class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        You are not logged in !
+      </div>
+      <div class="modal-footer">
+        <app-login></app-login>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

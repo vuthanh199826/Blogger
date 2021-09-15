@@ -1,0 +1,110 @@
+<br xmlns="http://www.w3.org/1999/html">
+<br>
+<br>
+<br>
+<br>
+<br>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css" integrity="sha256-3sPp8BkKUE7QyPSl6VfBByBroQbKxKG7tsusY2mhbVY=" crossorigin="anonymous" />
+<div class="container">
+  <div class="row">
+    <div class="col-md-9" style="height: 1000px">
+      <div class="row">
+        <div class="col-lg-12 mx-auto">
+          <div class="career-search mb-60">
+            <form action="#" class="career-form mb-60">
+              <div class="row">
+                <div class="col-md-6 col-lg-3 my-3" style="float: left;">
+
+                </div>
+                <div class="col-md-6 col-lg-3 my-3"></div>
+
+                <div class="col-md-6 col-lg-5 my-3">
+                  <div class="input-group ">
+                    <input type="text" class="form-control" placeholder="Enter Title ..." id="keywords" style="height: 48px; margin-left: 50px; float: right">
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-1 my-3" >
+                  <button type="button" class="btn btn-secondary" (click)="findByTitle()" style="width: 72px; height: 47px; float: right" id="contact-submit">
+                    <i class="fa fa-search"></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <h3 style="margin-top: 30px" class="text-secondary text-center" *ngIf="posts.length == 0 "> Không có kết quả bạn muốn tìm <img src="https://img.icons8.com/ios/2x/nerd--v3.gif" height="40" width="40" ></h3>
+      <div class="card mb-2" *ngFor="let post of posts | paginate :{
+        itemsPerPage: tableSize,
+                currentPage: page,
+                totalItems: count
+  }">
+        <div class="card-body p-2 p-sm-3" style="background-color: #f3f5f5" >
+          <div class="media forum-item">
+            <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="{{post.user.avatar}}" class="mr-3 rounded-circle" width="100" height="100" style="border: #707477 solid" /></a>
+            <div class="media-body">
+              <h5 style="color: #495057"><a style="text-decoration: none" data-toggle="collapse" data-target=".forum-content" class="content" routerLink="/view/{{post.id}}">{{post.title}}</a></h5>
+              <p class="content text-secondary">
+                {{post.description}}
+              </p>
+              <p class="text-muted"><a><i class="fa fa-user"> {{post.user.name}}</i></a> &nbsp;&nbsp;&nbsp; <span class="text-secondary font-weight-bold"><a><i class="fa fa-tag"> {{post.hashtag.name}}</i></a></span>
+                &nbsp;&nbsp;&nbsp; <span class="text-secondary font-weight-bold"><a><i class="fa fa-clock"> {{post.date | date}}</i></a></span>
+                &nbsp;&nbsp;&nbsp; <span class="text-secondary font-weight-bold"><a><i class="fa fa-eye"> View more ...</i></a></span>
+              </p>
+            </div>
+            <div class="text-muted small text-center align-self-center">
+              <span class="d-none d-sm-inline-block"><i class="fa fa-rate"></i> 19</span>
+              <span><i class="far fa-comment ml-2"></i> 3</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card-header" style="background-color: #b4e8e3 ; height: 80px; border-top-left-radius:10px; border-top-right-radius: 10px ">
+        <div class="row">
+          <div class="col-md-4">
+            <i class="fa fa-circle-notch" style="width: 100; height: 100; float: left"></i>
+          </div>
+          <div class="col-md-4 mt-3">
+          </div>
+          <div class="col-md-4">
+            <i class="fa fa-circle-notch" style="width: 100; height: 100; float: right"></i>
+          </div>
+        </div>
+      </div>
+      <div class="card-body" id="tag" style="background-color: #f3f5f5; height: 150px; border-bottom-right-radius: 10px; border-bottom-left-radius:10px">
+        <div class="row">
+          <div class="col-md-6">
+            <span><img src="{{tag.image}}" width="120" height="120" style="border-radius: 10px; border: #767c7c solid"></span>
+          </div>
+          <div class="col-md-6">
+            <h4><i class="fa fa-tag" style="margin-top: 20px; color: #495057" > {{tag.name}}</i></h4>
+            <h4><i class="fa fa-puzzle-piece" style="margin-top: 20px; color: #495057" > ({{posts.length}})</i></h4>
+          </div>
+        </div>
+      </div>
+      <div class="card-header"  style="background-color: #b4e8e3 ; height: 50px; border-top-left-radius:10px; border-top-right-radius: 10px;margin-top: 10px ">
+        <div class="row">
+          <div class="col-md-4">
+            <i class="fa fa-circle-notch" style="width: 100; height: 100; float: left"></i>
+          </div>
+          <div class="col-md-4 mt-3">
+          </div>
+          <div class="col-md-4">
+            <i class="fa fa-circle-notch" style="width: 100; height: 100; float: right"></i>
+          </div>
+        </div>
+      </div>
+      <div class="card-body" style="background-color: #f3f5f5; height: 700px;" >
+        &nbsp; <h5><i class="fa fa-list" style="color: #404348"> Category :</i></h5><br>
+        <a *ngFor="let hashtag of hashtags" class="btn btn-outline-info btn-sm" style="margin-left: 5px; margin-bottom: 5px" routerLink="/post/hashtag/{{hashtag.id}}"><i class="fa fa-tag">{{hashtag.name}}</i></a>
+      </div>
+      </div>
+  </div>
+  <div class="d-flex justify" style="margin-left: 35%" >
+    <pagination-controls previousLabel="" nextLabel="" (pageChange)="tabSize($event)">
+    </pagination-controls>
+  </div>
+</div>
+

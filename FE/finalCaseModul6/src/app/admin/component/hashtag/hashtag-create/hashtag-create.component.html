@@ -1,0 +1,40 @@
+<ng-template  #content let-modal xmlns="http://www.w3.org/1999/html">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title"><img src="https://img.icons8.com/ios/2x/tags--v2.gif" height="30" width="30"></h4>
+    <button type="button" class="btn btn-outline-danger btn-circle btn-lg btn-circle ml-2" aria-label="Close" (click)="modal.dismiss('Cancel')" style="border-radius: 44px">
+      <b>X</b>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="hashtagForm" (ngSubmit)="create()">
+      <div class="mb-3">
+        <b>Name</b>
+        <div class="input-group">
+          <span class="input-group-text" id="basic-addon2"><img src="https://cdn-icons-png.flaticon.com/128/1629/1629507.png" width="24" height="24"></span>
+          <input type="text" formControlName="name" class="form-control" placeholder="Username" aria-label="Name" aria-describedby="basic-addon2">
+        </div>
+      </div>
+      <div class="mb-3">
+        <b for="formFile" class="form-label">Image</b>
+        <div class="input-group">
+          <span class="input-group-text" id="basic-addon3"><img src="https://cdn-icons-png.flaticon.com/128/4305/4305513.png" width="24" height="24"></span>
+          <input type="file"
+                 id="file"
+                 class="form-control"
+                 #userPhoto
+                 (change)="onFileSelected($event)"
+                 name="image"
+                 autocomplete="off"
+          />
+        </div>
+      </div>
+      <img [hidden]="!fb" src="{{this.fb}}" width="100px" height="100px" style="border-radius: 10px">
+      <div class="modal-footer">
+        <button class="btn btn-outline-info" (click)="modal.close('Save click')" style="width: 100px">Save</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+<button type="button" class="btn btn-outline-success" (click)="open(content)" ngbTooltip="Create New" style="border-radius: 44px">
+  Create <img src="https://cdn-icons-png.flaticon.com/128/3270/3270906.png" width="30"height="30">
+</button>
